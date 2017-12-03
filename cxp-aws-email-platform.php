@@ -176,9 +176,9 @@ function post_published_notification( $post_id, $post ) {
         foreach( $users as $user ) {
             
             $to = $user->display_name." <".$user->user_email.">";
-            $subject = $post->post_title;
             
             $message = cxp_get_email_message($post, $user);
+	    $subject = $message['subject'];
             
             $send = wpses_mail( $to, $subject, $message, $headers );
             if ($send) {
